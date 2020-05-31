@@ -33,9 +33,9 @@ app.use("/static", express.static(path.join(__dirname, "/static")));
 
 app.get("/", (req, res) => {
     if (connectionsAmount === 0) {
-        res.sendFile("./static/welcome.html");
+        res.sendfile("./static/welcome.html");
     } else {
-        res.sendFile("./static/welcomeInCreatedGame.html");
+        res.sendfile("./static/welcomeInCreatedGame.html");
     }
 });
 
