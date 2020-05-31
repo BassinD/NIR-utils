@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SuperCrazyGame2DShooter</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<div id="viewport-frame">
+    <h1>SuperCrazyGame2DShooter</h1>
+    <div id="viewport-info">
+        <div id="configuration">
+            <ul class="list">
+                <li><input id="sensitive" type="range" min="0" max="100" value="50" /></li>
+                <li>
+                    <input type="checkbox" id="sounds" checked/>
+                    <label for="sounds"><span class="check"></span><b>Sounds volume</b></label>
+                </li>
+                <li><img src="../static/images/full-screen.svg" onclick="enterFullscreen('canvases','layer1','layer2')" id="fullscreenBtn"/><b>Full-screen</b></li>
+            </ul>
+        </div>
+        <div id="canvases">
+            <canvas id="layer1"></canvas>
+            <canvas id="layer2"></canvas>
+            <canvas id="layer3"></canvas>
+            <canvas id="layer4"></canvas>
+            <audio id="shoot" src="../static/sounds/laser_shoot.wav" style="display:none"></audio>
+            <audio id="respawn" src="../static/sounds/respawn.wav" style="display:none"></audio>
+            <!--<div id="abilities" onload="upda()">-->
+                <!--<p>Nickname</p><br>-->
+                <!--<label>Weapon: </label>-->
+                <!--<br>-->
+                <!--<label>Nickname</label>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+</body>
+<script src="../static/game.js"></script>
+</html>

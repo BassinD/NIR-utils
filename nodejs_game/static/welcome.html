@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crab's WORLD</title>
+
+    <link rel="stylesheet" type="text/css" href="../static/welcome.css">
+</head>
+<body>
+
+    <div id="login-form">
+        <h1>Crab's World</h1>
+
+        <fieldset>
+            <form action="firstlogin" method="post">
+                <input type="text" required value="Login" id="name" name="username">
+                <div class="complexity">
+                    Complexity: <br>
+                    <label for="easy">
+                        <input name="group1" type="radio" id="easy" value="easy" checked>
+                        Easy-Peasy
+                    </label>
+                    <label for="medium">
+                        <input name="group1" type="radio" id="medium" value="medium">
+                        Poidet
+                    </label>
+                    <label for="hard">
+                        <input name="group1" type="radio" id="hard" value="hard">
+                        Myaso
+                    </label>
+                </div>
+                <div class="complexity">
+                    Level size: <br>
+                    <label for="easy">
+                        <input name="group2" type="radio" id="small" value="small" checked>
+                        Small
+                    </label>
+                    <label for="medium">
+                        <input name="group2" type="radio" id="normal" value="normal">
+                        Normal
+                    </label>
+                    <label for="hard">
+                        <input name="group2" type="radio" id="large" value="large">
+                        Large
+                    </label>
+                </div>
+                <input type="text" required value="3" id="bots" name="botsAmount">
+                <input type="submit" value="START" id="btn">
+            </form>
+        </fieldset>
+
+    </div>
+</body>
+<script>
+	document.getElementById("bots").onkeypress = function(e) {
+		e = e || event;
+
+		if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+		var chr = getChar(e);
+		if (chr == null) return;
+
+		if (chr < '0' || chr > '9') {
+			return false;
+		}
+	}
+
+	function getChar(event) {
+		if (event.which == null) {
+			if (event.keyCode < 32) return null;
+			return String.fromCharCode(event.keyCode) // IE
+		}
+
+		if (event.which != 0 && event.charCode != 0) {
+			if (event.which < 32) return null;
+			return String.fromCharCode(event.which) // остальные
+		}
+
+		return null;
+	}
+</script>
+</html>
