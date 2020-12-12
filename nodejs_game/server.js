@@ -509,6 +509,15 @@ function dropScores() {
     }, 1000 / 60);
 
 
-server.listen(8080, () => {
+constr runningApp = server.listen(8080, () => {
     console.log("Server run on port:", 8080);
 });
+
+process.on('SIGTERM', () => {
+  console.info('SIGTERM signal received.');
+  console.log('Closing http server.');
+  runningApp.close(() => {
+    console.log('Http server closed.');
+  });
+});
+    
