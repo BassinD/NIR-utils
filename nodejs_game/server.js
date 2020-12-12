@@ -509,7 +509,7 @@ function dropScores() {
     }, 1000 / 60);
 
 
-constr runningApp = server.listen(8080, () => {
+const runningApp = server.listen(8080, () => {
     console.log("Server run on port:", 8080);
 });
 
