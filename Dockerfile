@@ -12,6 +12,9 @@ COPY ./nodejs_game/package*.json ./
 # Если вы создаете сборку для продакшн
 RUN npm ci --only=production
 
+# Установка curl для healthcheck
+RUN apt-get update && apt-get install -y ca-certificates curl
+
 # копируем исходный код
 COPY ./nodejs_game .
 
