@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+# Название объекта
+  name: test-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: test-app
+  # Количество реплик контейнера
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: test-app
+    # Описание контейнеров входящих в под
+    spec:
+      terminationGracePeriodSeconds: 3
+      nodeSelector:
+        mainWorker: "true"
+      containers:
+      - name: test-app
+      # Ссылка на образ контейнера
+        image: bassind/nir-test-app:latest
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 1        
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+# Название объекта
+  name: test-app-deployment-1
+spec:
+  selector:
+    matchLabels:
+      app: test-app
+  # Количество реплик контейнера
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test-app
+    # Описание контейнеров входящих в под
+    spec:
+      terminationGracePeriodSeconds: 3
+      tolerations:
+      - key: "node.kubernetes.io/unreachable"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 10
+      - key: "node.kubernetes.io/not-ready"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 10
+      containers:
+      - name: test-app
+      # Ссылка на образ контейнера
+        image: bassind/nir-test-app:latest
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 1
+

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+# Название объекта
+  name: test-app-deployment
+spec:
+  # Описание служебных тег объекта для связей с другими объектаи 
+  selector:
+    matchLabels:
+      app: test-app
+  # Количество реплик контейнера
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: test-app
+    # Описание контейнеров входящих в под
+    spec:
+      containers:
+      - name: test-app
+      # Ссылка на образ контейнера
+        image: bassind/nir-test-app:latest
+        ports:
+        - containerPort: 8080
